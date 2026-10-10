@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katy Youth Cricket</title>
+<meta name="description" content="Katy Youth Cricket (KYC) — a 501(c)(3) non-profit developing young cricketers ages 5–16 in Greater Houston since 2013.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#081430;
+    --navy-800:#0d1f4a;
+    --navy-700:#16306b;
+    --orange:#f47a1f;
+    --orange-600:#d9620b;
+    --gold:#ffc23d;
+    --cream:#faf6ef;
+    --ink:#111827;
+    --muted:#5b6476;
+    --line:#e6e1d7;
+    --white:#fff;
+    --radius:18px;
+    --shadow:0 10px 30px -12px rgba(8,20,48,.25);
+    --display:"Barlow Condensed", system-ui, sans-serif;
+    --body:"Inter", system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+  h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:.95;margin:0}
+  .eyebrow{font:700 .78rem/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.4rem;border-radius:999px;font-weight:700;text-decoration:none;font-size:.95rem;transition:transform .15s, background .15s, box-shadow .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 8px 20px -8px rgba(244,122,31,.7)}
+  .btn-primary:hover{background:var(--orange-600)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .btn-dark{background:var(--navy-800);color:#fff}
+
+  /* ---------- Header ---------- */
+  .topbar{background:var(--navy-900);color:#c9d3ea;font-size:.8rem}
+  .topbar .wrap{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0}
+  .topbar a{text-decoration:none}
+  .topbar a:hover{color:#fff}
+  .topbar .right{display:flex;gap:1.2rem}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(13,31,74,.92);backdrop-filter:saturate(1.4) blur(10px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+  .brand img{width:46px;height:46px;object-fit:contain;background:#fff;border-radius:12px;padding:3px}
+  .brand b{font-family:var(--display);font-size:1.45rem;letter-spacing:.03em;line-height:1}
+  .brand small{display:block;font-size:.68rem;letter-spacing:.2em;color:var(--gold);font-weight:600}
+  nav.links{display:flex;align-items:center;gap:1.6rem;font-weight:500;font-size:.93rem}
+  nav.links a{text-decoration:none;opacity:.85}
+  nav.links a:hover{opacity:1;color:var(--gold)}
+  nav.links .btn{opacity:1;padding:.65rem 1.15rem}
+  .menu-btn{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;color:#fff;overflow:hidden;background:var(--navy-800)}
+  .hero::before{content:"";position:absolute;inset:0;background:url("https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator638306705149846672.png") center 40%/cover no-repeat;opacity:.55}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--navy-900) 15%,rgba(13,31,74,.75) 50%,rgba(13,31,74,.2))}
+  .hero .wrap{position:relative;z-index:1;padding:110px 0 130px;display:grid;gap:1.6rem;max-width:1180px}
+  .hero h1{font-size:clamp(3.2rem,9vw,7.4rem);font-weight:800;max-width:11ch}
+  .hero h1 span{color:var(--orange)}
+  .hero p.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:56ch;color:#dbe3f5;margin:0}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.4rem}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.4rem .85rem;border-radius:999px;font-size:.82rem;width:fit-content}
+  .pill i{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgba(61,220,132,.25)}
+
+  /* ---------- Stats ---------- */
+  .stats{margin-top:-60px;position:relative;z-index:2}
+  .stats .grid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .stat{padding:1.6rem 1.4rem;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{font-family:var(--display);font-size:2.6rem;color:var(--navy-800);line-height:1;display:block}
+  .stat span{color:var(--muted);font-size:.9rem}
+
+  section{padding:96px 0}
+  .section-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2.6rem;flex-wrap:wrap}
+  .section-head h2{font-size:clamp(2.4rem,5vw,3.8rem);color:var(--navy-800);margin-top:.5rem}
+  .section-head p{max-width:48ch;color:var(--muted);margin:0}
+
+  /* ---------- Programs ---------- */
+  .programs{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+  .program{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem;display:flex;flex-direction:column;gap:.9rem;transition:transform .2s, box-shadow .2s, border-color .2s;position:relative;overflow:hidden}
+  .program:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+  .program .age{font-family:var(--display);font-size:3rem;line-height:.9;color:var(--navy-800)}
+  .program .age small{font-size:1rem;color:var(--muted);letter-spacing:.05em}
+  .program h3{font-size:1.6rem;color:var(--ink)}
+  .program p{margin:0;font-size:.9rem;color:var(--muted);flex:1}
+  .tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .6rem;border-radius:6px;width:fit-content}
+  .tag.tape{background:#fff1e5;color:var(--orange-600)}
+  .tag.leather{background:#e7ecf8;color:var(--navy-700)}
+  .program .bar{position:absolute;left:0;top:0;height:5px;width:100%}
+  .program a.more{font-size:.85rem;font-weight:600;color:var(--navy-700);text-decoration:none}
+  .program a.more:hover{color:var(--orange)}
+
+  /* ---------- About ---------- */
+  .about{background:var(--navy-800);color:#fff;position:relative;overflow:hidden}
+  .about .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center}
+  .about h2{font-size:clamp(2.4rem,5vw,3.8rem)}
+  .about p{color:#c9d3ea}
+  .photo-stack{position:relative;aspect-ratio:4/3.3}
+  .photo-stack img{position:absolute;border-radius:var(--radius);object-fit:cover;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+  .photo-stack img:first-child{width:78%;height:70%;top:0;left:0}
+  .photo-stack img:last-child{width:62%;height:56%;right:0;bottom:0;border:6px solid var(--navy-800)}
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+  .value{border-top:2px solid var(--orange);padding-top:.9rem}
+  .value b{font-family:var(--display);font-size:1.4rem;text-transform:uppercase;letter-spacing:.03em}
+  .value p{font-size:.88rem;margin:.3rem 0 0}
+  .quote{margin-top:2rem;font-size:1.1rem;font-style:italic;color:#fff;border-left:3px solid var(--gold);padding-left:1rem}
+
+  /* ---------- Community ---------- */
+  .impact{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .impact .card{background:#fff;border-radius:var(--radius);padding:1.8rem;border:1px solid var(--line)}
+  .impact .card.feature{grid-row:span 2;background:linear-gradient(160deg,var(--orange),#e8560a);color:#fff;border:0;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px}
+  .impact .big{font-family:var(--display);font-size:4.6rem;line-height:.9}
+  .impact h3{font-size:1.5rem;margin:.6rem 0 .4rem;color:var(--navy-800)}
+  .impact .feature h3{color:#fff}
+  .impact p{margin:0;color:var(--muted);font-size:.93rem}
+  .impact .feature p{color:#ffe9d9}
+  .impact .icon{font-size:1.6rem}
+
+  /* ---------- Gallery ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:.8rem}
+  .gallery figure{margin:0;border-radius:14px;overflow:hidden;position:relative;background:var(--navy-700)}
+  .gallery figure:first-child{grid-column:span 2;grid-row:span 2}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .gallery figure:hover img{transform:scale(1.05)}
+  .gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.2rem .9rem .8rem;color:#fff;font-size:.85rem;font-weight:600;background:linear-gradient(transparent,rgba(8,20,48,.85))}
+
+  /* ---------- Press ---------- */
+  .press{padding:56px 0;border-block:1px solid var(--line);background:#fff}
+  .press .wrap{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:space-between}
+  .press .eyebrow{color:var(--muted)}
+  .press ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:1rem 2.4rem}
+  .press a{font-family:var(--display);font-size:1.45rem;text-transform:uppercase;color:#9aa3b5;text-decoration:none;letter-spacing:.03em;transition:color .2s}
+  .press a:hover{color:var(--navy-800)}
+
+  /* ---------- Visit + Support ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+  .panel{border-radius:24px;padding:2.6rem;position:relative;overflow:hidden}
+  .panel h2{font-size:clamp(2rem,4vw,3rem)}
+  .panel.ground{background:#fff;border:1px solid var(--line)}
+  .panel.ground h2{color:var(--navy-800);margin:.5rem 0 1rem}
+  .panel.ground address{font-style:normal;font-size:1.1rem;font-weight:600}
+  .panel.ground p{color:var(--muted)}
+  .panel.donate{background:var(--navy-900);color:#fff}
+  .panel.donate h2{margin:.5rem 0 1rem}
+  .panel.donate p{color:#c9d3ea}
+  .panel.donate .ball{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e0453a,#8f1b14);opacity:.35}
+  .panel.donate > :not(.ball){position:relative;z-index:1}
+  .panel.donate .ball::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px dashed rgba(255,255,255,.55);transform:scaleX(.18)}
+  .panel .actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;position:relative}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{background:var(--orange);color:#fff;padding:64px 0}
+  .cta-band .wrap{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+  .cta-band h2{font-size:clamp(2.2rem,5vw,3.6rem);max-width:16ch}
+  .cta-band .btn-dark:hover{background:var(--navy-900)}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--navy-900);color:#a9b4cf;padding:64px 0 28px;font-size:.92rem}
+  footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem}
+  footer h4{color:#fff;font-family:var(--display);text-transform:uppercase;font-size:1.15rem;letter-spacing:.06em;margin:0 0 .9rem}
+  footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--gold)}
+  footer .legal{margin-top:3rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem}
+  .socials{display:flex;gap:.6rem;margin-top:1rem}
+  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center}
+  .socials a:hover{background:var(--orange);color:#fff}
+  .socials svg{width:18px;height:18px;fill:currentColor}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1080px){
+    .programs{grid-template-columns:repeat(3,1fr)}
+    footer .cols{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:860px){
+    nav.links{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--navy-800);padding:1.2rem 16px 1.6rem;gap:1rem;border-bottom:1px solid rgba(255,255,255,.1)}
+    nav.links.open{display:flex}
+    .menu-btn{display:block}
+    .stats .grid{grid-template-columns:1fr 1fr}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .about .grid,.split{grid-template-columns:1fr}
+    .impact{grid-template-columns:1fr 1fr}
+    .impact .card.feature{grid-column:span 2;grid-row:auto;min-height:260px}
+    .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+    .topbar .tag-line{display:none}
+  }
+  @media (max-width:560px){
+    section{padding:72px 0}
+    .programs{grid-template-columns:1fr}
+    .impact{grid-template-columns:1fr}
+    .impact .card.feature{grid-column:auto}
+    .values{grid-template-columns:1fr}
+    .panel{padding:1.8rem}
+    footer .cols{grid-template-columns:1fr}
+    .hero .wrap{padding:80px 0 110px}
+    header.nav .brand small{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="tag-line">Registered 501(c)(3) non-profit · Greater Houston, TX</span>
+    <div class="right">
+      <a href="mailto:info@katyyouthcricket.com">info@katyyouthcricket.com</a>
+      <a href="https://www.katyyouthcricket.com/Default.aspx?tabid=828172&isLogin=True">Member login</a>
+    </div>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="https://dt5602vnjxv0c.cloudfront.net/portals/10224/images/kyclogo.png" alt="KYC crest">
+      <div><b>KATY YOUTH CRICKET</b><small>CHARACTER · COMMUNITY · CRICKET</small></div>
+    </a>
+    <button class="menu-btn" aria-label="Open menu" onclick="document.querySelector('nav.links').classList.toggle('open')">☰</button>
+    <nav class="links">
+      <a href="#programs">Programs</a>
+      <a href="#about">About</a>
+      <a href="#community">Community</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn-primary" href="https://www.katyyouthcricket.com/Default.aspx?tabid=966114">Register now</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <div class="wrap">
+      <span class="pill"><i></i> Registration open for the upcoming season</span>
+      <h1>Character. Community. <span>Cricket.</span></h1>
+      <p class="lead">Since 2013, Katy Youth Cricket has helped boys and girls ages 5–16 learn the game from professional coaches, and build the discipline, teamwork and integrity that last well beyond the pitch.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="https://www.katyyouthcricket.com/Default.aspx?tabid=966114">Register your child →</a>
+        <a class="btn btn-ghost" href="#programs">Explore programs</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="grid">
+        <div class="stat"><b>2013</b><span>Founded in Katy, TX</span></div>
+        <div class="stat"><b>5–16</b><span>Ages, boys &amp; girls</span></div>
+        <div class="stat"><b>5</b><span>Age-group programs</span></div>
+        <div class="stat"><b>10,297</b><span>Meals raised for Houston Food Bank</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programs -->
+  <section id="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Youth programs</span>
+          <h2>A pathway for every age</h2>
+        </div>
+        <p>Weekly practices and matches, grouped by age and skill. Younger players start with tape ball; older groups move up to leather-ball cricket.</p>
+      </div>
+      <div class="programs">
+        <article class="program">
+          <div class="bar" style="background:#ffc23d"></div>
+          <span class="tag tape">Tape ball</span>
+          <div class="age">5–7<small> YRS</small></div>
+          <h3>Peewees</h3>
+          <p>A fun first step into cricket that builds coordination, confidence and a love of the game.</p>
+          <a class="more" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1714656">Program flyer →</a>
+        </article>
+        <article class="program">
+          <div class="bar" style="background:#f47a1f"></div>
+          <span class="tag tape">Tape ball</span>
+          <div class="age">8–10<small> YRS</small></div>
+          <h3>Rookies</h3>
+          <p>Batting, bowling and fielding basics, with plenty of game play and team spirit.</p>
+          <a class="more" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1714656">Program flyer →</a>
+        </article>
+        <article class="program">
+          <div class="bar" style="background:#3b82f6"></div>
+          <span class="tag leather">Leather ball</span>
+          <div class="age">9–11<small> YRS</small></div>
+          <h3>Cubs U11</h3>
+          <p>The move to hard-ball cricket, with structured technique work and competitive matches.</p>
+          <a class="more" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1714656">Program flyer →</a>
+        </article>
+        <article class="program">
+          <div class="bar" style="background:#16306b"></div>
+          <span class="tag leather">Leather ball</span>
+          <div class="age">12–13<small> YRS</small></div>
+          <h3>Juniors U13</h3>
+          <p>Match tactics, specialist skills and league play against teams across the region.</p>
+          <a class="more" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1714656">Program flyer →</a>
+        </article>
+        <article class="program">
+          <div class="bar" style="background:#081430"></div>
+          <span class="tag leather">Leather ball</span>
+          <div class="age">14–16<small> YRS</small></div>
+          <h3>Seniors U16</h3>
+          <p>High-performance training and tournament cricket for experienced young players.</p>
+          <a class="more" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1714656">Program flyer →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">About KYC</span>
+        <h2 style="margin:.6rem 0 1.2rem">More than runs<br>and wickets</h2>
+        <p>Katy Youth Cricket is a registered 501(c)(3) non-profit run by parent volunteers. What started in 2013 with four kids has become a cornerstone of youth cricket in the Greater Houston area.</p>
+        <p>Our professional coaches lead five age groups, and every session combines cricket skills with character. We want players to leave KYC with integrity, discipline and teamwork, along with a good cover drive.</p>
+        <div class="values">
+          <div class="value"><b>Character</b><p>Integrity, discipline and resilience, built one session at a time.</p></div>
+          <div class="value"><b>Community</b><p>Families, volunteers and players who show up for each other.</p></div>
+          <div class="value"><b>Cricket</b><p>Professional coaching and competitive play at every level.</p></div>
+        </div>
+        <p class="quote">"Everyone has two hands, one to help yourself and the second to help others."</p>
+      </div>
+      <div class="photo-stack">
+        <img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator635780423204512891.png" alt="KYC championship team with trophies">
+        <img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator638306702443246594.png" alt="KYC players in action">
+      </div>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section id="community">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Community service</span>
+          <h2>Stars on the field, leaders off it</h2>
+        </div>
+        <p>Our players and families give back to Katy and Houston through food drives, clean-ups and relief work.</p>
+      </div>
+      <div class="impact">
+        <div class="card feature">
+          <div class="big">10,297</div>
+          <h3>Meals for Houston Food Bank</h3>
+          <p>KYC youth cricketers raised over ten thousand meals in the Hunger Games challenge, then volunteered on site alongside their families.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🏠</div>
+          <h3>$1,200+ for The Ballard House</h3>
+          <p>Club members raised awareness and collected household items for this Katy charity.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🌿</div>
+          <h3>Ground clean-up</h3>
+          <p>Peewees and Rookies spent a Sunday cleaning up the KYC home ground.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🤝</div>
+          <h3>Search Homeless Services</h3>
+          <p>Moms, dads and kids prepared food and supplies for neighbors in need.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📦</div>
+          <h3>COVID relief</h3>
+          <p>The KYC team and volunteers packed and distributed relief bags across the community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Gallery</span>
+          <h2>Moments from the season</h2>
+        </div>
+        <a class="btn btn-dark" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1712520">View full gallery →</a>
+      </div>
+      <div class="gallery">
+        <figure><img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator638306705149846672.png" alt=""><figcaption>The cricket future in Katy looks bright</figcaption></figure>
+        <figure><img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator638306702443246594.png" alt=""><figcaption>KYC kids in action</figcaption></figure>
+        <figure><img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator638306703627356219.png" alt=""><figcaption>Awards ceremony</figcaption></figure>
+        <figure><img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator636080876661266197.png" alt=""><figcaption>Volunteering at Houston Food Bank</figcaption></figure>
+        <figure><img src="https://www.katyyouthcricket.com/portals/10224/contentrotator/contentrotator635780423204512891.png" alt=""><figcaption>The beginning: one of many titles</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press -->
+  <div class="press">
+    <div class="wrap">
+      <span class="eyebrow">As featured in</span>
+      <ul>
+        <li><a href="http://www.houstonchronicle.com/news/houston-texas/houston/article/Cricket-looks-to-broaden-base-in-the-U-S-6623680.php">Houston Chronicle</a></li>
+        <li><a href="http://www.mazdigital.com/webreader/43861?page=118">Katy Magazine</a></li>
+        <li><a href="http://newyorkcricket.com/news/2015/03/youth-cricket-thriving-in-katy/">New York Cricket</a></li>
+        <li><a href="http://www.indoamerican-news.com/?p=32728">Indo-American News</a></li>
+        <li><a href="http://voiceofasiaonline.com/community/youth-cricket-continue-to-prosper-in-katy/">Voice of Asia</a></li>
+        <li><a href="http://india-herald.com/youth-cricket-thrives-in-katy-p4363-1.htm">India Herald</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Visit + Support -->
+  <section id="visit">
+    <div class="wrap split">
+      <div class="panel ground">
+        <span class="eyebrow">Home ground</span>
+        <h2>Cinco Ranch Cricket Ground</h2>
+        <address>8200 S Fry Rd, Katy, TX 77494</address>
+        <p>Park at the back of Beckendorff Junior High School and follow the path on foot to the ground.</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=8200+S+Fry+Rd+Katy+TX+77494">Get directions</a>
+          <a class="btn" style="border:1.5px solid var(--line)" href="https://www.katyyouthcricket.com/Default.aspx?tabid=851999">Parking map</a>
+        </div>
+      </div>
+      <div class="panel donate">
+        <div class="ball" aria-hidden="true"></div>
+        <span class="eyebrow">Support KYC</span>
+        <h2>Help the next generation take the field</h2>
+        <p>Your donation funds coaching, equipment and ground costs, so more kids can play. KYC is a 501(c)(3), so gifts may be tax-deductible.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.paypal.com/us/fundraiser/charity/1711090">Donate</a>
+          <a class="btn btn-ghost" href="https://www.katyyouthcricket.com/Default.aspx?tabid=1712571">Volunteer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="wrap">
+      <h2>Ready to pick up a bat?</h2>
+      <a class="btn btn-dark" href="https://www.katyyouthcricket.com/Default.aspx?tabid=966114">Register for the season →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="#top" style="color:#fff">
+          <img src="https://dt5602vnjxv0c.cloudfront.net/portals/10224/images/kyclogo.png" alt="">
+          <div><b>KATY YOUTH CRICKET</b><small>EST. 2013</small></div>
+        </a>
+        <p style="margin-top:1rem;max-width:34ch">A 501(c)(3) non-profit developing young cricketers and community leaders in Greater Houston.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM21.9 7.9c-.1-1.6-.4-3-1.6-4.2S17.7 2.2 16.1 2.1C14.5 2 9.5 2 7.9 2.1 6.3 2.2 4.9 2.5 3.7 3.7S2.2 6.3 2.1 7.9C2 9.5 2 14.5 2.1 16.1c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.6.1 8.2 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.6 0-8.2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Play</h4>
+        <ul>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=1714656">Program &amp; age details</a></li>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=851997">Coaching materials</a></li>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=966114">Register</a></li>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=852000">Forms</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Club</h4>
+        <ul>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=851994">About us</a></li>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=851993">Governing body</a></li>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=1183744">Testimonials</a></li>
+          <li><a href="https://www.katyyouthcricket.com/Default.aspx?tabid=1712571">Volunteers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@katyyouthcricket.com">info@katyyouthcricket.com</a></li>
+          <li><a href="tel:+18106662646">810-666-2646</a></li>
+          <li>8200 S Fry Rd<br>Katy, TX 77494</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Katy Youth Cricket. All rights reserved.</span>
+      <span>Privacy · Terms · Children's Privacy Policy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('nav.links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('nav.links').classList.remove('open')));
+</script>
+</body>
+</html>
